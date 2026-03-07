@@ -4,3 +4,5 @@ backend/*.db
 backend/players_db.db
 
 backend/__pycache__/
+
+__pycache__/
