@@ -1,0 +1,6 @@
+backend/real_data.py
+
+backend/*.db
+backend/players_db.db
+
+backend/__pycache__/
