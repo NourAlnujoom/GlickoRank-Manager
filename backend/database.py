@@ -67,6 +67,11 @@ def init_db():
     conn.commit()    
     conn.close()
 
+def get_db_connection():
+    conn = sqlite3.connect(DB_NAME)
+    conn.row_factory = sqlite3.Row
+    return conn
+
 def get_tier_for_rating(rating):
     tiers = get_tier_settings()
     tiers.sort(key=lambda x: x['rating'])
@@ -189,3 +194,12 @@ def undo_last_tournament():
     conn.commit()
     conn.close()
     return True
+
+def delete_player(name):
+    conn = get_db_connection()
+    c = conn.cursor()
+    c.execute("DELETE FROM players WHERE name=?", (name,))
+    rowcount = c.rowcount
+    conn.commit()
+    conn.close()
+    return rowcount > 0
